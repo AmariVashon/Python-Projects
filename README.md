@@ -1,7 +1,7 @@
 # Python-Projects
 A compilation of my Python projects
 
-# Why Made This?
+# Who Made This?
 These projects were made solely by Amari (amarivashon@gmail.com). These are projects I made to improve my Python skills. 
 
 # Reminder
