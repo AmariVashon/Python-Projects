@@ -25,8 +25,3 @@ def create_phone_number(n):
     return combine
 n = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 print(create_phone_number(n))
-
-def make_phone_number(n):
-    return "({}{}{}) {}{}{}-{}{}{}{}".format(*n)
-
-print(make_phone_number(n))
