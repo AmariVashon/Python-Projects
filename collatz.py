@@ -12,7 +12,11 @@ def collatz(num):
 
 run = True
 while run:
-    ans = int(input("Input a number for the collatz sequence (0 to stop): "))
+    try:
+        ans = int(input("Input a number for the collatz sequence (0 to stop): "))
+    except:
+        print("You must input an integer.")
+        continue
     if ans == 0:
         sys.exit()
     while collatz(ans) != 1:
