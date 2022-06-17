@@ -6,12 +6,13 @@ In the event that this runs after NBA games have started, it will send a notific
 import requests
 from plyer import notification
 import datetime
+import time
 
 URL = "https://data.nba.net"
 
 data = requests.get(URL + "/prod/v1/today.json").json()
 x = data['links']['todayScoreboard']
-x = "/prod/v1/20220410/scoreboard.json"
+# x = "/prod/v1/20220410/scoreboard.json"
 scoreboard = requests.get(URL + x)
 
 # times = ["10:43 AM ET", "10:44 AM ET", "10:45 AM ET"]
@@ -40,9 +41,11 @@ def sort_times(times):
     return sorted(times)
 
 start_times = []
+teams = []
 
 for game in scoreboard.json()['games']:
     start_times.append(game['startTimeEastern'])
+    teams.append([game['hTeam']['triCode'], game['vTeam']['triCode']])
 
 new_times = list(map(to_military, start_times))
 final_times = sort_times(new_times)
@@ -50,6 +53,7 @@ final_times = list(map(strip_times, final_times))
 
 print(datetime.datetime.now().strftime("%H:%M"))
 print(final_times)
+# print(teams)
 
 
 while final_times != []:
@@ -70,3 +74,5 @@ while final_times != []:
                             timeout = 2
                         )
                 final_times.remove(to_military(game['startTimeEastern']).rstrip())
+
+time.sleep(5)
